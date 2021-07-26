@@ -172,7 +172,7 @@ function spawnObstacles() {
      
 
     //generate random obstacles
-    var rand = Math.round(random(1, 6));
+    var rand = Math.round(random(1, 3));
     switch (rand) {
       case 1:
         obstacle.addImage(obstacle1);
