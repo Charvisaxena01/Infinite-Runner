@@ -20,15 +20,16 @@ var gameOver, restart;
 localStorage["HighestScore"] = 0;
 
 function preload() {
-
-  boy_running = loadAnimation("1.png","2.png","3.png","4.png","5.png","6.png","7.png","8.png","9.png","10.png","11.png","12.png"); 
+//yes 
+//ok mam thank you
+  boy_running = loadAnimation("1.png","2.png","4.png","5.png","6.png","7.png","8.png","9.png","10.png","11.png","12.png"); 
   
   boy_collided = loadAnimation("3.png");
 
- groundImage = loadImage("ground2.png");
+ groundImage = loadImage("grass.png");
  
   cloudImage = loadImage("cloud.png");
-
+//change obstacles images only stone is ok rest 2 are not gud
   obstacle1 = loadImage("obstacle1.png");
   obstacle2 = loadImage("obstacle2.png");
   obstacle3 = loadImage("obstacle3.png");
@@ -44,36 +45,26 @@ function preload() {
 function setup() {
   createCanvas(600, 200);  
   
-  
-ground = createSprite(600, 180, 1200, 20);
-  
-ground.shapeColor=rgb(219 ,177 ,26)
-  
-  ground.addImage("ground",groundImage);
-  boy = createSprite(50, 185, 20, 50);
+  ground = createSprite(0, 180, 1200, 20);
+
+
+ ground.shapeColor="lightgreen"
+
+      
+
+  boy = createSprite(50, 180, 20, 50);
   boy.addAnimation("running", boy_running);
   boy.addAnimation("collided", boy_collided);
-  boy.setCollider("circle",1,0,1);
-  boy.debug = false
-  boy.scale = 0.35;
-//My attempt to  make ground image move
-  ground = createSprite(camera.position.x+150, 180, 400, 20);
-    
+  boy.scale = 0.28;
 
+   gameOver = createSprite(300, 100);
 
- 
-
-  invisibleGround = createSprite(200, 185, 400, 100);
-  invisibleGround.visible = false;
-
-  cloudsGroup = new Group();
-  obstaclesGroup = new Group();
-
-  gameOver = createSprite(300, 100,200,600);
   gameOver.addImage(gameOverImg);
 
   restart = createSprite(300, 140);
   restart.addImage(restartImg);
+
+
 
   gameOver.scale = 0.5;
   restart.scale = 0.1;
@@ -81,31 +72,31 @@ ground.shapeColor=rgb(219 ,177 ,26)
   gameOver.visible = false;
   restart.visible = false;
 
+  invisibleGround = createSprite(200, 197, 400, 10);
+  invisibleGround.visible = false;
+
+  cloudsGroup = new Group();
+  obstaclesGroup = new Group();
 
   score = 0;
 }
 
 function draw() {
-  //trex.debug = true;
+
   background(backgroundImg);
-  text("Score: " + score, camera.position.x-300, 50);
+  text("Score: " + score, camera.position.x-270, 50);
     boy.velocityX=5;
     camera.position.x=boy.x+250
+
   if (gameState === PLAY) { 
     score = score + Math.round(getFrameRate() / 60);
 
-    if (keyDown("space") && boy.y >= 100) {
-      boy.velocityY = -12;
+    if (keyDown("space") && boy.y >= 50) {
+      boy.velocityY = -10;
     }
 
-
-    boy.velocityY = boy.velocityY + 0.9;
-
-    
-    if(invisibleGround.x<0){
-   groundImage.x=groundImage.width/2   
-    }
-    groundImage.x=camera.position.x
+   boy.velocityY = boy.velocityY + 0.9;
+ 
      ground.width=camera.position.x+600
     ground.x=ground.width/2
     
@@ -167,9 +158,7 @@ function spawnClouds() {
 
 function spawnObstacles() {
   if (camera.position.x%240===0) {
-    var obstacle = createSprite(camera.position.x+500, 138, 10, 40);
-    //obstacle.debug = true;
-     
+    var obstacle = createSprite(camera.position.x+500, 153, 10, 40);   
 
     //generate random obstacles
     var rand = Math.round(random(1, 3));
@@ -188,8 +177,8 @@ function spawnObstacles() {
     }
 
     //assign scale and lifetime to the obstacle
-    obstacle.scale = 0.2;
-   
+    obstacle.scale = 0.09;
+
     obstacle.lifetime = 300;
     //add each obstacle to the group
     obstaclesGroup.add(obstacle);
