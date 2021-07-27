@@ -20,22 +20,20 @@ var gameOver, restart;
 localStorage["HighestScore"] = 0;
 
 function preload() {
-//yes 
-//ok mam thank you
+
   boy_running = loadAnimation("1.png","2.png","4.png","5.png","6.png","7.png","8.png","9.png","10.png","11.png","12.png"); 
   
   boy_collided = loadAnimation("3.png");
 
  groundImage = loadImage("grass.png");
  
-  cloudImage = loadImage("cloud.png");
-//change obstacles images only stone is ok rest 2 are not gud
+
   obstacle1 = loadImage("obstacle1.png");
   obstacle2 = loadImage("obstacle2.png");
   obstacle3 = loadImage("obstacle3.png");
  
 
-  gameOverImg = loadImage("gameO.jpeg");
+  gameOverImg = loadImage("gameO.png");
   restartImg = loadImage  ("restart.png");
   
    backgroundImg = loadImage("backgroundImg.png")
@@ -45,7 +43,7 @@ function preload() {
 function setup() {
   createCanvas(600, 200);  
   
-  ground = createSprite(0, 180, 1200, 20);
+  ground = createSprite(0, 180, 1200, 25);
 
 
  ground.shapeColor="lightgreen"
