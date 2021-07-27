@@ -43,7 +43,7 @@ function preload() {
 function setup() {
   createCanvas(600, 200);  
   
-  ground = createSprite(0, 180, 1200, 30);
+  ground = createSprite(0, 180, 1200, 85);
 
 
  ground.shapeColor="lightgreen"
